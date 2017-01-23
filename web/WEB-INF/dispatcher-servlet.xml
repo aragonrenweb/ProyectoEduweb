@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+    
+   
+    
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+            <property name="basename">
+               <value>mensaje</value>
+            </property>
+    </bean>
+    
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName">
+            <value>lenguaje</value>
+        </property>
+    </bean>
+   
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+      <property name="defaultLocale" value="en" />
+    </bean>
+    
+    <!--<bean class="Controlador.CreateController" id="multiactionCreate">
+     <property name="methodNameResolver">
+	<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+	   <property name="paramName" value="accion"/>
+	</bean>
+     </property>
+    </bean>-->
+    
+    <!--<bean class="Controlador.ModifyController" id="multiactionModify">
+     <property name="methodNameResolver">
+	<bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+	   <property name="paramName" value="accion"/>
+	</bean>
+     </property>
+    </bean>-->
+
+   
+    <bean class="Controlador.Login" id="keyLoginController"/>
+    <bean class="Controlador.CerrarLogin" id="cerrarLoginController"/>
+    <bean class="Controlador.CrearCuenta" id="keySignUpController"/>
+    <bean class="Controlador.DatosUsuarioControlador" name="ControladorIdioma"/>
+    <bean class="Controlador.SubirArchivosController" name="subirArchivosController"/>
+    <bean class="Controlador.SubjectsBBDD" id="SubjectsBBDD"/>
+    <!--<bean class="Controlador.ModifyController" id="modifyController"/>-->
+    <bean class="Controlador.LessonListController" id="lessonListController"/>
+    <bean class="Controlador.EliminateLessonController" id="lessonEliminateController"/>
+    <bean class="Controlador.CreateController" id="createController"/>
+    <bean class="Controlador.ModifyController" id="modifyController"/>
+    <bean class="Controlador.DetailsController" id="detailsController"/> 
+    <bean class="Controlador.Ajax.LevelAjaxController" id="levelAjaxController"/>
+    <bean class="Controlador.Ajax.SubjectAjaxController" id="subjectAjaxController"/>
+    <bean class="Controlador.Ajax.SubsectionAjaxController" id="subsectionAjaxController"/>
+    <bean class="Controlador.Ajax.LevelStudentsAjaxController" id="levelStudentsAjaxController"/>
+    <bean class="Controlador.LessonCreateController" id="lessonCreateController"/>
+    <bean class="Controlador.LessonModifyController" id="lessonModifyController"/>
+    <bean class="Controlador.Ajax.ModalAjaxController" id="modalAjaxController"/>
+
+    
+    
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        
+        <property name="interceptors">
+            <list>
+                <ref bean="localeChangeInterceptor"/>
+            </list>
+        </property>
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+                <prop key="check.htm">keyLoginController</prop>
+                <prop key="cerrarLogin.htm">cerrarLoginController</prop>
+                <prop key="create.htm">keySignUpController</prop>
+                <prop key="aux_create.htm">keySignUpController</prop>
+                <prop key="modify.htm">modifyController</prop>
+                <prop key="calendar.htm">calendarController</prop>
+                <prop key="subjects.htm">SubjectsBBDD</prop>
+                <!--<prop key="lessons.htm">multiaction</prop>-->
+                <prop key="datosIdioma.htm">ControladorIdioma</prop>
+                <prop key="messages.htm">messagesController</prop>
+                <prop key="students.htm">studentsController</prop>
+                <prop key="graphic.htm">graphicController</prop>
+                <prop key="subirarchivos.htm">subirArchivosController</prop>
+                <prop key="lessonList.htm">lessonListController</prop>
+                <prop key="create.htm">createController</prop>
+                <prop key="levelAjax.htm">levelAjaxController</prop>
+                <prop key="lessonEliminate.htm">lessonEliminateController</prop>
+                <prop key="modify.htm">multiactionModify</prop>
+                <prop key="lessonDetails.htm">detailsController</prop>
+                <prop key="modify.htm">modifyController</prop>
+                <prop key="subjectAjax.htm">subjectAjaxController</prop>
+                <prop key="subsectionAjax.htm">subsectionAjaxController</prop>
+                <prop key="levelStudentsAjax.htm">levelStudentsAjaxController</prop>
+                <prop key="lessonCreate.htm">lessonCreateController</prop>
+                <prop key="lessonModify.htm">lessonModifyController</prop>
+                <prop key="modalAjax.htm">modalAjaxController</prop>
+            </props>
+        </property>
+    </bean>
+  
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->         
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
+    <bean name="calendarController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="calendar" />
+    <bean name="bbddController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="pruebaBBDD" />
+<!--    <bean name="lessonsController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="lessons" />-->
+    <bean name="messagesController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="messages" />
+    <bean name="studentsController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="students" />
+    <bean name="graphicController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="buttonDataBase" /> 
+
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:annotation-driven />
+</beans>
