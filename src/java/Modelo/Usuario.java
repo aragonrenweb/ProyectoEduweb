@@ -25,7 +25,7 @@ public class Usuario {
 	    private String mes_nacimiento;
 	    private String anio_nacimiento;
 	    private String genero; 
-	    private Pais pais;
+
 
     public Usuario() {
         this.id_usuario = 0;
@@ -41,10 +41,10 @@ public class Usuario {
         this.mes_nacimiento = "";
         this.anio_nacimiento = "";
         this.genero = "";
-        this.pais = null;
+        
     }
             
-    public Usuario(int id_usuario, String nombre, String primer_apellido, String segundo_apellido, String email, String usuario, String password, int typeuser, String fecha_nacimiento, String dia_nacimiento, String mes_nacimiento, String anio_nacimiento, String genero, Pais pais) {
+    public Usuario(int id_usuario, String nombre, String primer_apellido, String segundo_apellido, String email, String usuario, String password, int typeuser, String fecha_nacimiento, String dia_nacimiento, String mes_nacimiento, String anio_nacimiento, String genero) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.primer_apellido = primer_apellido;
@@ -58,7 +58,7 @@ public class Usuario {
         this.mes_nacimiento = mes_nacimiento;
         this.anio_nacimiento = anio_nacimiento;
         this.genero = genero;
-        this.pais = pais;
+    
     }
 
     public Usuario(int id_usuario, String nombre, String primer_apellido, String segundo_apellido, String email, String usuario, String password, int typeuser) {
@@ -176,13 +176,7 @@ public class Usuario {
         this.genero = genero;
     }
 
-    public Pais getPais() {
-        return pais;
-    }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
             
             
             

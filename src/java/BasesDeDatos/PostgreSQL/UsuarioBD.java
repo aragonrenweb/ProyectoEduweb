@@ -6,9 +6,8 @@
 package BasesDeDatos.PostgreSQL;
 
 
-import Modelo.Cadena;
-import Modelo.Pais;
-import Modelo.Persona;
+
+
 import Modelo.Usuario;
 import java.sql.ResultSet;
 
