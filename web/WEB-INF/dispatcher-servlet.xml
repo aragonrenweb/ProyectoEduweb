@@ -55,7 +55,6 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
    
     <bean class="Controlador.Login" id="keyLoginController"/>
     <bean class="Controlador.CerrarLogin" id="cerrarLoginController"/>
-    <bean class="Controlador.CrearCuenta" id="keySignUpController"/>
     <bean class="Controlador.DatosUsuarioControlador" name="ControladorIdioma"/>
     <bean class="Controlador.SubirArchivosController" name="subirArchivosController"/>
     <bean class="Controlador.SubjectsBBDD" id="SubjectsBBDD"/>
@@ -94,8 +93,6 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
                 <prop key="index.htm">indexController</prop>
                 <prop key="check.htm">keyLoginController</prop>
                 <prop key="cerrarLogin.htm">cerrarLoginController</prop>
-                <prop key="create.htm">keySignUpController</prop>
-                <prop key="aux_create.htm">keySignUpController</prop>
                 <prop key="modify.htm">modifyController</prop>
                 <prop key="calendar.htm">calendarController</prop>
                 <prop key="subjects.htm">SubjectsBBDD</prop>
